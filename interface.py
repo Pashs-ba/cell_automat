@@ -17,21 +17,34 @@ def render():
         time.sleep(0.01)
 
 
+def rand():
+    for i in range(1000):
+        hole[random.randint(0, size_x-1), random.randint(1, size_y-1)] = 1
+    render()
+
+
 def callback(event):
     canvas = event.widget
     x = canvas.canvasx(event.x)
     y = canvas.canvasy(event.y)
     
 
-
-
+def foget():
+    canv.grid_forget()
+    time.sleep(0.01)
+    canv.grid(column=0, row=0, rowspan=2)
 root = Tk()
-root.geometry('500x600')
+
 
 canv = Canvas(width=size_x*10, height=size_y*10)
-canv.pack()
-btn = Button(text='Start!', command=render)
-btn.pack()
+canv.grid(column=0, row=0, rowspan=2)
+startBtn = Button(text='Start!', command=render)
+startBtn.grid(column=0, row=2)
 
-canv.bind('<Button - 1>', callback)
+randBtn = Button(text='Random!', command=rand)
+randBtn.grid(column=0, row=3)
+
+restBtn = Button(text='Reset', command=foget)
+restBtn.grid(column=0, row=4)
+
 mainloop()

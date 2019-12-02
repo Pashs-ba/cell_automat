@@ -4,14 +4,6 @@ size_y = 50
 size_x = 50
 hole = np.zeros((size_y, size_x), 'uint8')
 
-# for i in range(100):
-#     hole[random.randint(0, size_x-1), random.randint(1, size_y-1)] = 1
-hole[2, 1] = 1
-hole[1, 2] = 1
-hole[2, 2] = 1
-# hole[1, 1] = 1
-
-
 def find_neighbors(x, y, mod_x, mod_y, hole):
     try:
         return hole[y+mod_y, x+mod_x]
