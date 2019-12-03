@@ -8,7 +8,7 @@ hole[2, 3] = 1
 hole[3, 3] = 1
 hole[3, 2] = 1
 hole[2, 1] = 1
-
+start_hole = hole.copy()
 def find_neighbors(x, y, mod_x, mod_y, hole):
     try:
         return hole[y+mod_y, x+mod_x]

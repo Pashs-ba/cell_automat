@@ -2,20 +2,19 @@ from tkinter import *
 from base import *
 import time
 
-
+stop = 1
 def render():
-    global hole, root
-    while True:
+    global hole, root, stop
+    stop = 1
+    while stop:
         for y in range(0, size_y):
             for x in range(0, size_x):
                 if hole[y, x] == 1:
-                    canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="black")
-                else:
-                    canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="white")
+                    canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="green", tag='a')
         hole = next_motion(hole)
         root.update()
-        canv.delete('all')
-        time.sleep(0.01)
+        canv.delete('a')
+
 
 
 def rand():
@@ -31,15 +30,19 @@ def callback(event):
     
 
 def foget():
-    canv.grid_forget()
+    global stop, hole, start_hole
+    stop = 0
     time.sleep(0.01)
-    canv.grid(column=0, row=0, rowspan=2)
+    canv.delete('a')
+    hole = start_hole.copy()
+
 
 
 root = Tk()
 
 
 canv = Canvas(width=size_x*10, height=size_y*10)
+canv.create_rectangle(0,0,size_x*10,size_y*10, fill = 'blue')
 canv.grid(column=0, row=0, rowspan=2)
 
 startBtn = Button(text='Start!', command=render)
