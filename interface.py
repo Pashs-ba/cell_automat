@@ -14,6 +14,7 @@ def render():
                     canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="white")
         hole = next_motion(hole)
         root.update()
+        canv.delete('all')
         time.sleep(0.01)
 
 
@@ -33,11 +34,14 @@ def foget():
     canv.grid_forget()
     time.sleep(0.01)
     canv.grid(column=0, row=0, rowspan=2)
+
+
 root = Tk()
 
 
 canv = Canvas(width=size_x*10, height=size_y*10)
 canv.grid(column=0, row=0, rowspan=2)
+
 startBtn = Button(text='Start!', command=render)
 startBtn.grid(column=0, row=2)
 

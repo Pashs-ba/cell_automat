@@ -3,6 +3,11 @@ import random
 size_y = 50
 size_x = 50
 hole = np.zeros((size_y, size_x), 'uint8')
+hole[1, 3] = 1
+hole[2, 3] = 1
+hole[3, 3] = 1
+hole[3, 2] = 1
+hole[2, 1] = 1
 
 def find_neighbors(x, y, mod_x, mod_y, hole):
     try:
