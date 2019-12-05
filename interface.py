@@ -3,6 +3,8 @@ from base import *
 import time
 
 stop = 1
+
+
 def render():
     global hole, root, stop
     stop = 1
@@ -14,7 +16,6 @@ def render():
         hole = next_motion(hole)
         root.update()
         canv.delete('a')
-
 
 
 def rand():
@@ -37,12 +38,12 @@ def foget():
     hole = start_hole.copy()
 
 
-
 root = Tk()
+root.resizable(False, False)
 
 
 canv = Canvas(width=size_x*10, height=size_y*10)
-canv.create_rectangle(0,0,size_x*10,size_y*10, fill = 'blue')
+canv.create_rectangle(0, 0, size_x*10, size_y*10, fill='blue')
 canv.grid(column=0, row=0, rowspan=2)
 
 startBtn = Button(text='Start!', command=render)

@@ -9,10 +9,26 @@ hole[3, 3] = 1
 hole[3, 2] = 1
 hole[2, 1] = 1
 start_hole = hole.copy()
+
+
 def find_neighbors(x, y, mod_x, mod_y, hole):
     try:
-        return hole[y+mod_y, x+mod_x]
+        if hole[y+mod_y, x+mod_x]:
+            return 1
+        else:
+            return 0
+
     except IndexError:
+        return 0
+
+
+def condition(a, cell):
+    if a == 3:
+        return 1
+    elif (a == 2 or a == 3) and cell == 1:
+        # print('hello')
+        return 1
+    else:
         return 0
 
 
@@ -35,13 +51,7 @@ def next_motion(hole):
             #     print(neighbors)
             #     print(hole[y, x])
             #     exit()
-            if a == 3:
-                new_hole[y, x] = 1
-            elif (a == 2 or a == 3) and hole[y, x] == 1:
-                # print('hello')
-                new_hole[y, x] = 1
-            else:
-                new_hole[y, x] = 0
+            new_hole[y, x] = condition(a, new_hole[y, x])
     return new_hole
 
 
