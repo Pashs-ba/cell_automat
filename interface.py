@@ -1,17 +1,20 @@
 from tkinter import *
 from base import *
 import time
+import random
 
 stop = 1
 
 
-def render():
+def game():
     global hole, root, stop
     stop = 1
     while stop:
         for y in range(0, size_y):
             for x in range(0, size_x):
                 if hole[y, x] == 1:
+                    canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="yellow", tag='a')
+                if hole[y, x] == 2:
                     canv.create_rectangle(x*10, y*10, x*10+10, y*10+10, fill="green", tag='a')
         hole = next_motion(hole)
         root.update()
@@ -19,9 +22,9 @@ def render():
 
 
 def rand():
-    for i in range(1000):
+    for _ in range(1000):
         hole[random.randint(0, size_x-1), random.randint(1, size_y-1)] = 1
-    render()
+    game()
 
 
 def callback(event):
@@ -41,12 +44,11 @@ def foget():
 root = Tk()
 root.resizable(False, False)
 
-
 canv = Canvas(width=size_x*10, height=size_y*10)
 canv.create_rectangle(0, 0, size_x*10, size_y*10, fill='blue')
 canv.grid(column=0, row=0, rowspan=2)
 
-startBtn = Button(text='Start!', command=render)
+startBtn = Button(text='Start!', command=game)
 startBtn.grid(column=0, row=2)
 
 randBtn = Button(text='Random!', command=rand)
